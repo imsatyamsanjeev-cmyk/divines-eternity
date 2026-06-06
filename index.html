@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Divine's Eternity | Luxury Gifts & Custom Hampers Bangalore</title>
+  <meta name="description" content="Welcome to Divine's Eternity. We craft luxury gift hampers, custom satin rose bouquets, handmade jewelry, and silk scrunchies. Wholesale & retail available in Bangalore.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Slider & Reveal Styling -->
+  <style>
+    /* Hero Slideshow Specific */
+    .hero-slider-container {
+      height: 90vh;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--color-dark);
+    }
+    
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      z-index: 1;
+      transition: opacity 1.2s ease-in-out;
+      display: flex;
+      align-items: center;
+    }
+    
+    .hero-slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(42, 46, 43, 0.75) 0%, rgba(42, 46, 43, 0.3) 100%);
+      z-index: 2;
+    }
+    
+    .slide-active {
+      opacity: 1;
+      z-index: 2;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      color: var(--color-light);
+      max-width: 750px;
+      padding: 0 2rem;
+    }
+    
+    .hero-tag {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--color-primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: slideDown 1s ease;
+    }
+    
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--color-light-pure);
+    }
+    
+    .hero-desc {
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      opacity: 0.95;
+      line-height: 1.7;
+    }
+    
+    .hero-slider-dots {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    
+    .dot-active {
+      background: var(--color-primary);
+      transform: scale(1.2);
+    }
+    
+    /* Collection Showcase */
+    .coll-card {
+      padding: 2rem;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      position: relative;
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: var(--color-light);
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .coll-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(42, 46, 43, 0) 40%, rgba(42, 46, 43, 0.85) 100%);
+      z-index: 1;
+      transition: var(--transition-normal);
+    }
+    
+    .coll-card:hover::before {
+      background: linear-gradient(to bottom, rgba(42, 46, 43, 0.3) 0%, rgba(42, 46, 43, 0.9) 100%);
+    }
+    
+    .coll-content {
+      position: relative;
+      z-index: 2;
+      transition: var(--transition-normal);
+    }
+    
+    .coll-title {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .coll-desc {
+      font-size: 0.9rem;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      transition: var(--transition-normal);
+      line-height: 1.6;
+    }
+    
+    .coll-card:hover .coll-desc {
+      opacity: 0.9;
+      height: auto;
+      margin-bottom: 1.25rem;
+    }
+    
+    .coll-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+    }
+    
+    /* Stats & Milestone */
+    .milestone-section {
+      background-color: var(--color-secondary-light);
+      padding: 6rem 0;
+      border-top: 1px solid rgba(74, 107, 93, 0.1);
+      border-bottom: 1px solid rgba(74, 107, 93, 0.1);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      color: var(--color-secondary);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      color: var(--color-dark-muted);
+    }
+    
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.75rem;
+      }
+      .hero-slider-container {
+        height: 80vh;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE PRELOADER -->
+  <div class="preloader" id="preloader">
+    <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="preloader-logo">
+    <div class="preloader-spinner"></div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <nav class="navbar-container" id="navbar">
+    <div class="container navbar-content">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="logo-img-icon">
+        <div class="logo-text-group">
+          <span class="logo-title">Divine's Eternity</span>
+          <span class="logo-subtitle">Luxury Gifts & Hampers</span>
+        </div>
+      </a>
+      
+      <div class="desktop-menu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="booking.html" class="nav-link">Order Hamper</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="navbar-actions">
+        <a href="booking.html" class="btn btn-outline pulse-gold-btn" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Customize</a>
+        <button class="mobile-menu-btn" id="menu-toggle-btn" aria-label="Toggle Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-links">
+      <a href="index.html" class="drawer-link active">Home</a>
+      <a href="about.html" class="drawer-link">Our Story</a>
+      <a href="products.html" class="drawer-link">Collections</a>
+      <a href="booking.html" class="drawer-link">Order Hamper</a>
+      <a href="contact.html" class="drawer-link">Contact</a>
+      <a href="booking.html" class="btn btn-primary" style="margin-top: 1rem;">Start Booking</a>
+    </div>
+  </div>
+
+  <!-- 1. HERO SLIDESHOW -->
+  <div class="hero-slider-container">
+    <!-- Slide 1: Bouquets -->
+    <div class="hero-slide slide-active" style="background-image: url('assets/bouquets/WhatsApp Image 2026-06-06 at 6.39.01 AM.jpeg');">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-tag">Everlasting Flower Art</span>
+          <h1 class="hero-title">Beautiful Satin Rose Bouquets</h1>
+          <p class="hero-desc">Elegant bouquets handcrafted stitch-by-stitch from premium satin ribbons. Flowers that never wither, preserving your love and heartfelt sentiments forever.</p>
+          <div class="hero-actions">
+            <a href="products.html?cat=bouquets" class="btn btn-accent pulse-gold-btn">Explore Bouquets</a>
+            <a href="booking.html" class="btn btn-outline" style="color: var(--color-light); border-color: rgba(255,255,255,0.4); margin-left: 1rem;">Book Custom</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide 2: Frames -->
+    <div class="hero-slide" style="background-image: url('assets/Frames/WhatsApp Image 2026-06-06 at 6.41.18 AM.jpeg');">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-tag">3D Shadowbox Displays</span>
+          <h1 class="hero-title">Customized Floral Frames</h1>
+          <p class="hero-desc">Preserve your special dates, wedding cards, or initials surrounded by hand-wound satin roses and fairy lights. A true masterpiece of memory keeping.</p>
+          <div class="hero-actions">
+            <a href="products.html?cat=frames" class="btn btn-accent pulse-gold-btn">View Custom Frames</a>
+            <a href="booking.html" class="btn btn-outline" style="color: var(--color-light); border-color: rgba(255,255,255,0.4); margin-left: 1rem;">Design One</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slide 3: Clutchers -->
+    <div class="hero-slide" style="background-image: url('assets/clutchers/WhatsApp Image 2026-06-06 at 6.48.53 AM.jpeg');">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-tag">Handmade Hair Accessories</span>
+          <h1 class="hero-title">Aesthetic Clutchers & Scrunchies</h1>
+          <p class="hero-desc">Style your hair with our premium claw clips, satin bows, and pearl clutchers. Lightweight, highly durable designs built for beautiful hair updos.</p>
+          <div class="hero-actions">
+            <a href="products.html?cat=clutchers" class="btn btn-accent pulse-gold-btn">Explore Clutchers</a>
+            <a href="products.html?cat=scrunchies" class="btn btn-outline" style="color: var(--color-light); border-color: rgba(255,255,255,0.4); margin-left: 1rem;">View Scrunchies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Slider dots -->
+    <div class="hero-slider-dots">
+      <span class="slider-dot dot-active" data-index="0"></span>
+      <span class="slider-dot" data-index="1"></span>
+      <span class="slider-dot" data-index="2"></span>
+    </div>
+  </div>
+
+  <!-- 2. SIGNATURE COLLECTIONS -->
+  <section class="section-padding container reveal">
+    <div class="section-title-container">
+      <span class="section-tag">OUR EXQUISITE OFFERINGS</span>
+      <h2 class="section-title">The Signature Collections</h2>
+    </div>
+    
+    <div class="grid-3">
+      <!-- Collection 1: Satin Bouquets -->
+      <a href="products.html?cat=bouquets" class="coll-card glass-panel" style="background-image: url('assets/bouquets/WhatsApp Image 2026-06-06 at 6.39.02 AM (1).jpeg');">
+        <div class="coll-content">
+          <h3 class="coll-title">Satin Bouquets</h3>
+          <p class="coll-desc">Artisanal bouquets made with high-quality satin ribbon roses. Handcrafted to serve as a lasting keepsake.</p>
+          <span class="coll-link">Explore Collection <i data-lucide="arrow-right" size="16"></i></span>
+        </div>
+      </a>
+
+      <!-- Collection 2: Custom Frames -->
+      <a href="products.html?cat=frames" class="coll-card glass-panel" style="background-image: url('assets/Frames/WhatsApp Image 2026-06-06 at 6.41.18 AM.jpeg');">
+        <div class="coll-content">
+          <h3 class="coll-title">Custom Frames</h3>
+          <p class="coll-desc">3D shadowbox frames with custom floral arrangements, initials, dates, and warm led fairy lights.</p>
+          <span class="coll-link">Explore Collection <i data-lucide="arrow-right" size="16"></i></span>
+        </div>
+      </a>
+      
+      <!-- Collection 3: Hair Clutchers -->
+      <a href="products.html?cat=clutchers" class="coll-card glass-panel" style="background-image: url('assets/clutchers/WhatsApp Image 2026-06-06 at 6.48.53 AM (1).jpeg');">
+        <div class="coll-content">
+          <h3 class="coll-title">Aesthetic Clutchers</h3>
+          <p class="coll-desc">Shimmering pearl claws, matte finish clips, and elegant satin bow clips for premium hair styling.</p>
+          <span class="coll-link">Explore Collection <i data-lucide="arrow-right" size="16"></i></span>
+        </div>
+      </a>
+
+      <!-- Collection 4: Gift Hampers -->
+      <a href="products.html?cat=hampers" class="coll-card glass-panel" style="background-image: url('assets/bouquets/WhatsApp Image 2026-06-06 at 6.39.03 AM.jpeg');">
+        <div class="coll-content">
+          <h3 class="coll-title">Luxury Gift Hampers</h3>
+          <p class="coll-desc">Artfully arranged boxes filled with custom candles, chocolates, and handcrafted treasures.</p>
+          <span class="coll-link">Explore Collection <i data-lucide="arrow-right" size="16"></i></span>
+        </div>
+      </a>
+      
+      <!-- Collection 5: Jewellery -->
+      <a href="products.html?cat=jewellery" class="coll-card glass-panel" style="background-image: url('assets/Frames/WhatsApp Image 2026-06-06 at 6.41.18 AM (1).jpeg');">
+        <div class="coll-content">
+          <h3 class="coll-title">Handmade Jewelry</h3>
+          <p class="coll-desc">Delicate freshwater pearl necklaces, gold-plated butterfly bracelets, and customizable charms.</p>
+          <span class="coll-link">Explore Collection <i data-lucide="arrow-right" size="16"></i></span>
+        </div>
+      </a>
+      
+      <!-- Collection 6: Scrunchies -->
+      <a href="products.html?cat=scrunchies" class="coll-card glass-panel" style="background-image: url('assets/clutchers/WhatsApp Image 2026-06-06 at 6.48.54 AM.jpeg');">
+        <div class="coll-content">
+          <h3 class="coll-title">Silk Scrunchies</h3>
+          <p class="coll-desc">Mulberry silk and organza scrunchies designed to prevent hair damage while looking stylish.</p>
+          <span class="coll-link">Explore Collection <i data-lucide="arrow-right" size="16"></i></span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 3. BRIEF FOUNDER INTRO -->
+  <section class="section-padding" style="background-color: var(--color-primary-light);">
+    <div class="container reveal">
+      <div class="grid-2 align-center">
+        <div>
+          <img src="assets/owner photo/nisarga.jpg" alt="Nisarga - Founder of Divine's Eternity" style="border-radius: var(--border-radius-md); box-shadow: var(--shadow-lg); width: 100%; max-height: 480px; object-fit: cover; border: 1px solid rgba(197, 160, 89, 0.2);">
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <span class="section-tag" style="text-align: left;">MEET THE FOUNDER</span>
+          <h2 class="subpage-title" style="color: var(--color-dark); text-align: left; font-size: 2.5rem; margin-bottom: 1.5rem;">Turning Emotions into Forever</h2>
+          <p style="color: var(--color-dark-muted); line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.5rem;">
+            "I am the proud founder of <strong>Divine's Eternity</strong>, a brand born from my passion for preserving emotions and turning moments into lasting memories. We focus on creating thoughtfully designed bouquets and premium hampers that go beyond simple gifts—they represent love, memories, and heartfelt emotions."
+          </p>
+          <p style="color: var(--color-dark-muted); line-height: 1.8; font-size: 1.05rem; margin-bottom: 2rem; font-style: italic;">
+            — Nisarga, Founder
+          </p>
+          <div>
+            <a href="about.html" class="btn btn-primary">Read Full Story</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MILESTONES -->
+  <section class="milestone-section">
+    <div class="container stats-grid reveal">
+      <div>
+        <div class="stat-number">1,500+</div>
+        <div class="stat-label">Instagram Hearts</div>
+      </div>
+      <div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Handcrafted Quality</div>
+      </div>
+      <div>
+        <div class="stat-number">Bangalore</div>
+        <div class="stat-label">Based & Shipping</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. DYNAMIC CALL TO ACTION -->
+  <section class="section-padding container text-center reveal">
+    <div class="glass-panel" style="padding: 5rem 2rem; border-radius: var(--border-radius-lg); background: linear-gradient(135deg, rgba(255,240,242,0.6) 0%, rgba(232,240,236,0.6) 100%); border: 1px solid rgba(197, 160, 89, 0.25);">
+      <h2 style="font-family: var(--font-serif); font-size: 3rem; margin-bottom: 1.5rem; color: var(--color-dark);">Create Your Custom Hamper</h2>
+      <p style="max-width: 650px; margin: 0 auto 2.5rem auto; color: var(--color-dark-muted); font-size: 1.1rem; line-height: 1.7;">
+        Want to surprise someone with something unique? Try our interactive Hamper Builder. Select your items, customize your greeting, calculate estimates, and place orders directly via WhatsApp.
+      </p>
+      <a href="booking.html" class="btn btn-accent btn-lg pulse-gold-btn">Open Hamper Builder</a>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container footer-content-grid">
+      <!-- Col 1 -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="footer-logo-img">
+          <h3>Divine's Eternity</h3>
+        </div>
+        <p class="footer-about-text">Turning fleeting moments into lasting memories with luxury handcrafted gift hampers, satin ribbon bouquets, jewelry, and scrunchies in Bangalore, Karnataka.</p>
+        <div class="footer-social-links">
+          <a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/919353652043" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WhatsApp">
+            <i data-lucide="message-square"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Col 2 -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Get in Touch</h4>
+        <ul class="footer-contact-list">
+          <li class="contact-list-item">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <strong>Location:</strong>
+              <p>Bangalore, Karnataka, India</p>
+            </div>
+          </li>
+          <li class="contact-list-item">
+            <i data-lucide="phone"></i>
+            <div>
+              <strong>WhatsApp / Contact:</strong>
+              <p><a href="tel:+919353652043">+91 9353652043</a></p>
+            </div>
+          </li>
+          <li class="contact-list-item">
+            <i data-lucide="instagram"></i>
+            <div>
+              <strong>Instagram:</strong>
+              <p><a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer">@divines_eternity2025</a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Col 3 -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Our Studio Location</h4>
+        <div class="maps-wrapper glass-panel">
+          <!-- Bangalore map representation -->
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.925527376722!2d77.5945627!3d12.9715987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c0b4131b%3A0xedf2723e3d2b0d4!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1780592132663!5m2!1sen!2sin" 
+            width="100%" 
+            height="150" 
+            style="border: 0; border-radius: 8px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            title="Divine's Eternity Bangalore Studio"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container footer-credits-bar">
+      <p>&copy; 2026 Divine's Eternity. All rights reserved. | <a href="policies.html" style="text-decoration: underline;">Policies</a></p>
+      <p>Designed & Developed by <a href="https://github.com/devxnex" target="_blank" style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">devxnex</a></p>
+    </div>
+  </footer>
+
+  <!-- FLOATING DESKTOP WHATSAPP WIDGET -->
+  <a href="https://wa.me/919353652043?text=Hello%20Divine's%20Eternity,%20I'm%20visiting%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="desktop-whatsapp-widget">
+    <i data-lucide="message-square"></i> Chat with Us
+  </a>
+
+  <!-- MOBILE DOCK BAR -->
+  <div class="mobile-dock-wrapper glass-panel">
+    <a href="tel:+919353652043" class="dock-item" aria-label="Call Owner">
+      <div class="dock-icon-circle bg-call"><i data-lucide="phone" size="20"></i></div>
+      <span class="dock-label">Call</span>
+    </a>
+    <a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer" class="dock-item" aria-label="Instagram Page">
+      <div class="dock-icon-circle bg-email" style="background-color: #e1306c;"><i data-lucide="instagram" size="20"></i></div>
+      <span class="dock-label">Instagram</span>
+    </a>
+    <a href="https://wa.me/919353652043?text=Hello%20Divine's%20Eternity,%20I%20would%20like%20to%20enquire%20about%20your%20custom%20gift%20hampers." target="_blank" rel="noopener noreferrer" class="dock-item" aria-label="Chat on WhatsApp">
+      <div class="dock-icon-circle bg-whatsapp"><i data-lucide="message-square" size="20"></i></div>
+      <span class="dock-label">WhatsApp</span>
+    </a>
+    <a href="booking.html" class="dock-item" aria-label="Customize Order">
+      <div class="dock-icon-circle bg-map" style="background-color: var(--color-accent);"><i data-lucide="sparkles" size="20"></i></div>
+      <span class="dock-label">Custom</span>
+    </a>
+  </div>
+
+  <!-- Razorpay Checkout & Confetti CDN -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- JS Code Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

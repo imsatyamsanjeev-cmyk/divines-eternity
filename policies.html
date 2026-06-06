@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Policies & Compliance | Divine's Eternity Bangalore</title>
+  <meta name="description" content="View our Terms and Conditions, Privacy Policy, Shipping & Delivery Policy, and Refund and Cancellation Policy. Standard business guidelines for Divine's Eternity.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    .policies-wrapper {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    
+    .policies-nav {
+      background: var(--color-light-pure);
+      border-radius: var(--border-radius-md);
+      border: 1px solid rgba(210, 97, 119, 0.15);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 110px;
+    }
+    
+    .policies-nav-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(210, 97, 119, 0.15);
+    }
+    
+    .policy-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      padding: 0.95rem 1.25rem;
+      border: none;
+      background: transparent;
+      border-radius: var(--border-radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--color-dark-muted);
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      margin-bottom: 0.5rem;
+    }
+    
+    .policy-tab-btn:hover {
+      background: var(--color-primary-light);
+      color: var(--color-accent);
+    }
+    
+    .policy-tab-btn.tab-active {
+      background: var(--color-primary);
+      color: var(--color-secondary);
+    }
+    
+    .policies-content-box {
+      background: var(--color-light-pure);
+      border-radius: var(--border-radius-lg);
+      border: 1px solid rgba(210, 97, 119, 0.15);
+      padding: 4rem;
+      box-shadow: var(--shadow-sm);
+      min-height: 500px;
+    }
+    
+    .policy-pane {
+      display: none;
+    }
+    
+    .policy-pane.pane-active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    
+    .policy-pane h2 {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      color: var(--color-secondary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .policy-pane h3 {
+      font-size: 1.15rem;
+      color: var(--color-dark);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    
+    .policy-pane p {
+      color: var(--color-dark-muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      font-size: 0.98rem;
+    }
+    
+    .policy-pane ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-dark-muted);
+    }
+    
+    .policy-pane li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      font-size: 0.98rem;
+    }
+    
+    .last-updated {
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 992px) {
+      .policies-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .policies-nav {
+        position: static;
+      }
+      .policies-content-box {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE PRELOADER -->
+  <div class="preloader" id="preloader">
+    <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="preloader-logo">
+    <div class="preloader-spinner"></div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <nav class="navbar-container navbar-scrolled" id="navbar">
+    <div class="container navbar-content">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="logo-img-icon">
+        <div class="logo-text-group">
+          <span class="logo-title">Divine's Eternity</span>
+          <span class="logo-subtitle">Luxury Gifts & Hampers</span>
+        </div>
+      </a>
+      
+      <div class="desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="booking.html" class="nav-link">Order Hamper</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="navbar-actions">
+        <a href="booking.html" class="btn btn-outline pulse-gold-btn" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Customize</a>
+        <button class="mobile-menu-btn" id="menu-toggle-btn" aria-label="Toggle Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-links">
+      <a href="index.html" class="drawer-link">Home</a>
+      <a href="about.html" class="drawer-link">Our Story</a>
+      <a href="products.html" class="drawer-link">Collections</a>
+      <a href="booking.html" class="drawer-link">Order Hamper</a>
+      <a href="contact.html" class="drawer-link">Contact</a>
+      <a href="booking.html" class="btn btn-primary" style="margin-top: 1rem;">Start Booking</a>
+    </div>
+  </div>
+
+  <!-- SUBPAGE HERO -->
+  <div class="subpage-hero" style="background-image: url('assets/bouquets/WhatsApp Image 2026-06-06 at 6.39.02 AM.jpeg')">
+    <div class="subpage-hero-content">
+      <span class="subpage-tag">LEGAL & REGULATORY</span>
+      <h1 class="subpage-title">Policies & Terms</h1>
+      <p class="subpage-desc">Please review our guidelines, delivery terms, and customer rights, optimized for direct Razorpay gateways.</p>
+    </div>
+  </div>
+
+  <!-- POLICIES MAIN VIEW -->
+  <section class="section-padding container">
+    <div class="policies-wrapper">
+      
+      <!-- Side Navigation -->
+      <aside class="policies-nav reveal">
+        <h3 class="policies-nav-title">Documents</h3>
+        <button class="policy-tab-btn tab-active" data-target="pane-terms">
+          <i data-lucide="file-text" size="18"></i> Terms & Conditions
+        </button>
+        <button class="policy-tab-btn" data-target="pane-privacy">
+          <i data-lucide="shield" size="18"></i> Privacy Policy
+        </button>
+        <button class="policy-tab-btn" data-target="pane-refund">
+          <i data-lucide="rotate-ccw" size="18"></i> Refund & Cancellation
+        </button>
+        <button class="policy-tab-btn" data-target="pane-shipping">
+          <i data-lucide="truck" size="18"></i> Shipping & Delivery
+        </button>
+      </aside>
+      
+      <!-- Content Panel -->
+      <main class="policies-content-box reveal">
+        
+        <!-- PANE 1: TERMS & CONDITIONS -->
+        <div class="policy-pane pane-active" id="pane-terms">
+          <span class="last-updated">Last updated: June 2026</span>
+          <h2>Terms & Conditions</h2>
+          <p>Welcome to Divine's Eternity ("Brand", "We", "Us", or "Our"). These Terms and Conditions govern your access to and use of our website and services, including purchasing our handcrafted gift items, bouquets, frames, clutchers, jewelry, and custom gift hampers.</p>
+          
+          <h3>1. Acceptance of Terms</h3>
+          <p>By accessing our website, browsing our collections, or placing orders via WhatsApp, Razorpay, or cash, you agree to comply with and be bound by these Terms and Conditions. If you do not agree, please do not use our services.</p>
+          
+          <h3>2. Product Crafting & Variations</h3>
+          <p>Please note that all our items are 100% handcrafted. Since each rose is wound, each frame is assembled, and each hamper is decorated by hand, minor variations in appearance, color tone, size, and layout are natural and are a testament to their authentic artisan quality.</p>
+          
+          <h3>3. Pricing & Payments</h3>
+          <p>All prices listed on our product pages or hamper builder are in Indian Rupees (INR) and are estimated rates. We accept payments online through our Razorpay integration, bank transfers, or cash payments. The final order is only confirmed upon receipt of advance payment or confirmation via our official WhatsApp channels.</p>
+          
+          <h3>4. Intellectual Property</h3>
+          <p>All content present on this website, including product photographs, graphics, text, logo design, layout, and scripts, is the intellectual property of Divine's Eternity and is protected by copyright laws. Any unauthorized distribution, reproduction, or commercial use is strictly prohibited.</p>
+          
+          <h3>5. Limitation of Liability</h3>
+          <p>We are not responsible for any indirect, incidental, or consequential damages resulting from the use or inability to use our products. We make every effort to ensure the accuracy of details but make no warranties regarding descriptions, timings, or deliveries by third-party courier services.</p>
+        </div>
+        
+        <!-- PANE 2: PRIVACY POLICY -->
+        <div class="policy-pane" id="pane-privacy">
+          <span class="last-updated">Last updated: June 2026</span>
+          <h2>Privacy Policy</h2>
+          <p>At Divine's Eternity, we respect your privacy and are committed to safeguarding the personal data you share with us when ordering custom hampers, bouquets, and crafts.</p>
+          
+          <h3>1. Information We Collect</h3>
+          <p>We collect only the essential personal information required to process and deliver your custom orders. This includes:</p>
+          <ul>
+            <li><strong>Personal details:</strong> Your name, phone number, and WhatsApp number.</li>
+            <li><strong>Delivery information:</strong> Shipping address, delivery date, and customized greeting message card contents.</li>
+            <li><strong>Payment info:</strong> Payment transaction details processed securely via Razorpay (we do not store your raw credit card or banking credentials).</li>
+          </ul>
+          
+          <h3>2. How We Use Your Data</h3>
+          <p>The collected information is used strictly for:</p>
+          <ul>
+            <li>Processing, packing, and dispatching your orders.</li>
+            <li>Communicating order status, dispatch warnings, or custom questions via WhatsApp or phone call.</li>
+            <li>Processing secure pre-payments and issuing invoices.</li>
+          </ul>
+          
+          <h3>3. Data Sharing & Third-Parties</h3>
+          <p>We do not sell, trade, or distribute your personal data. We share your address and contact number only with trusted delivery operators (such as local courier services in Bangalore) to facilitate delivery. Payment details are processed directly by secure PCI-DSS compliant checkout pipelines via Razorpay.</p>
+          
+          <h3>4. Data Security</h3>
+          <p>We employ standard electronic safety procedures to protect your data from unauthorized access or theft. Your customer preferences are stored locally on secure systems.</p>
+        </div>
+        
+        <!-- PANE 3: REFUND & CANCELLATION -->
+        <div class="policy-pane" id="pane-refund">
+          <span class="last-updated">Last updated: June 2026</span>
+          <h2>Refund & Cancellation Policy</h2>
+          <p>Thank you for supporting handcrafted small businesses! Please read our policy on returns, refunds, and cancellations before placing your orders.</p>
+          
+          <h3>1. Order Cancellations</h3>
+          <ul>
+            <li>Since all our flower bouquets, frames, and hampers are highly customized and handmade from scratch to order, we accept cancellations **only within 24 hours** of order placement.</li>
+            <li>Cancellations requested after 24 hours will not be accepted as we would have already begun sourcing materials or crafting the specific item.</li>
+            <li>To request a cancellation, please drop us a text on our official WhatsApp number: <a href="tel:+919353652043" style="color: var(--color-accent); font-weight: 700;">+91 9353652043</a>.</li>
+          </ul>
+          
+          <h3>2. Returns & Replacements</h3>
+          <ul>
+            <li>Due to the custom and highly fragile nature of our products, we **do not accept general returns** or exchanges based on color preference or minor variation.</li>
+            <li>In the rare event that your product is received in a **damaged state** due to transport, please take a video/photo during unpacking and share it with us on WhatsApp within **12 hours of delivery**.</li>
+            <li>If the damage is verified, we will happily provide a free replacement or execute repair corrections for the damaged item.</li>
+          </ul>
+          
+          <h3>3. Refund Processing</h3>
+          <ul>
+            <li>For eligible cancellations, the full advance amount will be refunded.</li>
+            <li>Refunds are credited directly to your original payment source (via Razorpay or bank transfer).</li>
+            <li>Once initiated, refunds typically take **5 to 7 business days** to reflect in your bank account, depending on your banking institution.</li>
+          </ul>
+        </div>
+        
+        <!-- PANE 4: SHIPPING & DELIVERY -->
+        <div class="policy-pane" id="pane-shipping">
+          <span class="last-updated">Last updated: June 2026</span>
+          <h2>Shipping & Delivery Policy</h2>
+          <p>We make every effort to pack and ship your delicate handcrafted treasures with the highest level of protection. Here are our delivery rules.</p>
+          
+          <h3>1. Local Bangalore Deliveries</h3>
+          <ul>
+            <li>Our studio is based in Bangalore, Karnataka.</li>
+            <li>For local Bangalore orders, we dispatch via instant courier services (like Dunzo, Porter, or local delivery boys).</li>
+            <li>Local shipping fees are calculated dynamically based on real-time distance from our studio to your address.</li>
+            <li>You can select your preferred delivery date in our Custom Hamper Builder, and we will do our best to match your exact schedule.</li>
+          </ul>
+          
+          <h3>2. Nationwide shipping</h3>
+          <ul>
+            <li>For orders outside Bangalore, we ship via registered national parcel partners.</li>
+            <li>Nationwide shipping takes **3 to 5 business days** for transit after dispatch.</li>
+            <li>Please note that custom hamper frames and delicate bouquets require **2-3 days of crafting time** prior to dispatch.</li>
+            <li>Once dispatched, we will share the tracking number/URL with you directly on WhatsApp.</li>
+          </ul>
+          
+          <h3>3. Address Errors & Delays</h3>
+          <ul>
+            <li>Please ensure your delivery address is accurate and complete, including landmarks, to prevent delays.</li>
+            <li>We are not responsible for delays caused by national holidays, severe weather, courier service delays, or if the recipient is unavailable to accept delivery.</li>
+          </ul>
+        </div>
+        
+      </main>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container footer-content-grid">
+      <!-- Col 1 -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="footer-logo-img">
+          <h3>Divine's Eternity</h3>
+        </div>
+        <p class="footer-about-text">Turning fleeting moments into lasting memories with luxury handcrafted gift hampers, satin ribbon bouquets, jewelry, and scrunchies in Bangalore, Karnataka.</p>
+        <div class="footer-social-links">
+          <a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/919353652043" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WhatsApp">
+            <i data-lucide="message-square"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Col 2 -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Get in Touch</h4>
+        <ul class="footer-contact-list">
+          <li class="contact-list-item">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <strong>Location:</strong>
+              <p>Bangalore, Karnataka, India</p>
+            </div>
+          </li>
+          <li class="contact-list-item">
+            <i data-lucide="phone"></i>
+            <div>
+              <strong>WhatsApp / Contact:</strong>
+              <p><a href="tel:+919353652043">+91 9353652043</a></p>
+            </div>
+          </li>
+          <li class="contact-list-item">
+            <i data-lucide="instagram"></i>
+            <div>
+              <strong>Instagram:</strong>
+              <p><a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer">@divines_eternity2025</a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Col 3 -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Our Studio Location</h4>
+        <div class="maps-wrapper glass-panel">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.925527376722!2d77.5945627!3d12.9715987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c0b4131b%3A0xedf2723e3d2b0d4!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1780592132663!5m2!1sen!2sin" 
+            width="100%" 
+            height="150" 
+            style="border: 0; border-radius: 8px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            title="Divine's Eternity Bangalore Studio"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container footer-credits-bar">
+      <p>&copy; 2026 Divine's Eternity. All rights reserved. | <a href="policies.html" style="text-decoration: underline;">Policies</a></p>
+      <p>Designed & Developed by <a href="https://github.com/devxnex" target="_blank" style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">devxnex</a></p>
+    </div>
+  </footer>
+
+  <!-- FLOATING DESKTOP WHATSAPP WIDGET -->
+  <a href="https://wa.me/919353652043?text=Hello%20Divine's%20Eternity,%20I'm%20visiting%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="desktop-whatsapp-widget">
+    <i data-lucide="message-square"></i> Chat with Us
+  </a>
+
+  <!-- MOBILE DOCK BAR -->
+  <div class="mobile-dock-wrapper glass-panel">
+    <a href="tel:+919353652043" class="dock-item" aria-label="Call Owner">
+      <div class="dock-icon-circle bg-call"><i data-lucide="phone" size="20"></i></div>
+      <span class="dock-label">Call</span>
+    </a>
+    <a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer" class="dock-item" aria-label="Instagram Page">
+      <div class="dock-icon-circle bg-email" style="background-color: #e1306c;"><i data-lucide="instagram" size="20"></i></div>
+      <span class="dock-label">Instagram</span>
+    </a>
+    <a href="https://wa.me/919353652043?text=Hello%20Divine's%20Eternity,%20I%20would%20like%20to%20enquire%20about%20your%20custom%20gift%20hampers." target="_blank" rel="noopener noreferrer" class="dock-item" aria-label="Chat on WhatsApp">
+      <div class="dock-icon-circle bg-whatsapp"><i data-lucide="message-square" size="20"></i></div>
+      <span class="dock-label">WhatsApp</span>
+    </a>
+    <a href="booking.html" class="dock-item" aria-label="Customize Order">
+      <div class="dock-icon-circle bg-map" style="background-color: var(--color-accent);"><i data-lucide="sparkles" size="20"></i></div>
+      <span class="dock-label">Custom</span>
+    </a>
+  </div>
+
+  <!-- JS Code Scripts -->
+  <script src="script.js"></script>
+  
+  <!-- Policies Tab Switching Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabBtns = document.querySelectorAll(".policy-tab-btn");
+      const panes = document.querySelectorAll(".policy-pane");
+      
+      tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          // Remove active states
+          tabBtns.forEach(b => b.classList.remove("tab-active"));
+          panes.forEach(p => p.classList.remove("pane-active"));
+          
+          // Add active states
+          btn.classList.add("tab-active");
+          const targetId = btn.getAttribute("data-target");
+          const targetPane = document.getElementById(targetId);
+          if (targetPane) {
+            targetPane.classList.add("pane-active");
+            // Scroll to content on small screens
+            if (window.innerWidth < 992) {
+              document.querySelector(".policies-content-box").scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

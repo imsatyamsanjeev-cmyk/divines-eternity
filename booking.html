@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Hamper Builder | Divine's Eternity Bangalore</title>
+  <meta name="description" content="Build your own custom luxury hamper box or custom flower bouquet. Estimate prices dynamically and place your personalized order via WhatsApp.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Form Specific Styles -->
+  <style>
+    .booking-section {
+      background-color: var(--color-light);
+    }
+    
+    .booking-card-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-lg);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      background: var(--color-light-pure);
+    }
+    
+    .booking-card-body {
+      padding: 3.5rem;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .form-section-title {
+      font-size: 1.25rem;
+      color: var(--color-dark);
+      margin-bottom: 1.5rem;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      border-left: 3px solid var(--color-secondary);
+      padding-left: 0.75rem;
+    }
+    
+    /* Inputs */
+    .luxury-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .luxury-input-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-dark-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .luxury-input,
+    .luxury-select,
+    .luxury-textarea {
+      background-color: var(--color-light);
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--border-radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      color: var(--color-dark);
+      transition: var(--transition-fast);
+      width: 100%;
+    }
+    
+    .luxury-input:focus,
+    .luxury-select:focus,
+    .luxury-textarea:focus {
+      border-color: var(--color-accent);
+      background-color: var(--color-light-pure);
+      box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+    }
+    
+    .luxury-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    /* Builder Checkboxes */
+    .builder-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .builder-item-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.95rem 1.25rem;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid rgba(74, 107, 93, 0.15);
+      background: var(--color-light);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    
+    .builder-item-label:hover {
+      border-color: var(--color-primary);
+      background-color: var(--color-primary-light);
+    }
+    
+    .builder-checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .builder-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-secondary);
+      cursor: pointer;
+    }
+    
+    .builder-item-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-dark);
+    }
+    
+    .builder-item-price {
+      font-weight: 700;
+      color: var(--color-secondary);
+    }
+    
+    .builder-checked {
+      border-color: var(--color-secondary);
+      background-color: var(--color-secondary-light);
+    }
+    
+    /* Calculator Box */
+    .calculator-box {
+      background: rgba(197, 160, 89, 0.05);
+      border: 1px solid rgba(197, 160, 89, 0.2);
+      border-radius: var(--border-radius-sm);
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      color: var(--color-text-dark);
+      margin-bottom: 0.6rem;
+    }
+    
+    .calc-divider {
+      height: 1px;
+      background: rgba(197, 160, 89, 0.2);
+      margin: 0.8rem 0;
+    }
+    
+    .row-deposit {
+      margin-bottom: 0.75rem;
+    }
+    
+    .deposit-amt {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-secondary);
+    }
+    
+    .calc-disclaimer {
+      font-size: 0.78rem;
+      color: var(--color-dark-muted);
+      line-height: 1.4;
+    }
+    
+    /* Submit Row */
+    .form-submit-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(42, 46, 43, 0.08);
+      padding-top: 2rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    
+    .security-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-dark-muted);
+    }
+    
+    .icon-green {
+      color: #25d366;
+    }
+    
+    .grid-2.gap-small {
+      gap: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .booking-card-body {
+        padding: 2rem 1.25rem;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .form-submit-row {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .security-tag {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE PRELOADER -->
+  <div class="preloader" id="preloader">
+    <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="preloader-logo">
+    <div class="preloader-spinner"></div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <nav class="navbar-container navbar-scrolled" id="navbar">
+    <div class="container navbar-content">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="logo-img-icon">
+        <div class="logo-text-group">
+          <span class="logo-title">Divine's Eternity</span>
+          <span class="logo-subtitle">Luxury Gifts & Hampers</span>
+        </div>
+      </a>
+      
+      <div class="desktop-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="products.html" class="nav-link">Collections</a>
+        <a href="booking.html" class="nav-link active">Order Hamper</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="navbar-actions">
+        <a href="booking.html" class="btn btn-outline active pulse-gold-btn" style="padding: 0.6rem 1.5rem; font-size: 0.8rem;">Customize</a>
+        <button class="mobile-menu-btn" id="menu-toggle-btn" aria-label="Toggle Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU DRAWER -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-links">
+      <a href="index.html" class="drawer-link">Home</a>
+      <a href="about.html" class="drawer-link">Our Story</a>
+      <a href="products.html" class="drawer-link">Collections</a>
+      <a href="booking.html" class="drawer-link active">Order Hamper</a>
+      <a href="contact.html" class="drawer-link">Contact</a>
+      <a href="booking.html" class="btn btn-primary" style="margin-top: 1rem;">Start Booking</a>
+    </div>
+  </div>
+
+  <!-- SUBPAGE HERO -->
+  <div class="subpage-hero" style="background-image: url('assets/hero_jewellery.png')">
+    <div class="subpage-hero-content">
+      <span class="subpage-tag">CUSTOM DESIGNER</span>
+      <h1 class="subpage-title">Custom Hamper Builder</h1>
+      <p class="subpage-desc">Design a bespoke hamper by selecting your choices. Estimate pricing instantly and secure your booking via WhatsApp.</p>
+    </div>
+  </div>
+
+  <!-- BOOKING SECTION -->
+  <section class="section-padding booking-section">
+    <div class="container">
+      <div class="booking-card-wrapper reveal">
+        <div class="booking-card-body">
+          <form id="form-booking">
+            <div class="form-grid">
+              
+              <!-- Left Column: Customer Info -->
+              <div class="form-column">
+                <h3 class="form-section-title">Recipient & Delivery Details</h3>
+                
+                <div class="luxury-input-group">
+                  <label class="luxury-input-label">Your Name *</label>
+                  <input type="text" class="luxury-input" id="cust-name" required placeholder="John Doe">
+                </div>
+                
+                <div class="luxury-input-group">
+                  <label class="luxury-input-label">Mobile Number *</label>
+                  <input type="tel" class="luxury-input" id="cust-phone" required placeholder="+91 XXXXX XXXXX">
+                </div>
+                
+                <div class="luxury-input-group">
+                  <label class="luxury-input-label">Delivery Date *</label>
+                  <input type="date" class="luxury-input" id="delivery-date" required>
+                </div>
+                
+                <div class="luxury-input-group">
+                  <label class="luxury-input-label">Delivery Address in Bangalore *</label>
+                  <textarea class="luxury-textarea" id="delivery-addr" required placeholder="Provide full address for home delivery..."></textarea>
+                </div>
+              </div>
+              
+              <!-- Right Column: Builder Options -->
+              <div class="form-column">
+                <h3 class="form-section-title">Select Hamper Items</h3>
+                
+                <div class="builder-options-list">
+                  <!-- Base Box -->
+                  <label class="builder-item-label builder-checked" id="lbl-box">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-box" checked disabled>
+                      <span class="builder-item-name">Luxury Hamper Box & Packing</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;200</span>
+                  </label>
+                  
+                  <!-- Bouquet -->
+                  <label class="builder-item-label" id="lbl-bouquet">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-bouquet" data-price="1000">
+                      <span class="builder-item-name">Satin Rose Bouquet</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;1,000</span>
+                  </label>
+                  
+                  <!-- Jewellery -->
+                  <label class="builder-item-label" id="lbl-jewellery">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-jewellery" data-price="600">
+                      <span class="builder-item-name">Handmade Pearl Necklace</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;600</span>
+                  </label>
+                  
+                  <!-- Scrunchies -->
+                  <label class="builder-item-label" id="lbl-scrunchies">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-scrunchies" data-price="300">
+                      <span class="builder-item-name">Set of 2 Silk Scrunchies</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;300</span>
+                  </label>
+                  
+                  <!-- Candle & Perfume -->
+                  <label class="builder-item-label" id="lbl-candle">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-candle" data-price="500">
+                      <span class="builder-item-name">Organic Candle & Perfume Set</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;500</span>
+                  </label>
+                  
+                  <!-- Greeting Card -->
+                  <label class="builder-item-label" id="lbl-card">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-card" data-price="100">
+                      <span class="builder-item-name">Handwritten Greeting Card</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;100</span>
+                  </label>
+                  
+                  <!-- Custom Frame -->
+                  <label class="builder-item-label" id="lbl-frame">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-frame" data-price="750">
+                      <span class="builder-item-name">Customized Floral Frame</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;750</span>
+                  </label>
+                  
+                  <!-- Clutcher -->
+                  <label class="builder-item-label" id="lbl-clutcher">
+                    <div class="builder-checkbox-wrapper">
+                      <input type="checkbox" class="builder-checkbox" id="item-clutcher" data-price="200">
+                      <span class="builder-item-name">Aesthetic Hair Clutcher</span>
+                    </div>
+                    <span class="builder-item-price">&#8377;200</span>
+                  </label>
+                </div>
+                
+                <!-- Card Personalization Message -->
+                <div class="luxury-input-group" id="card-msg-group" style="display: none;">
+                  <label class="luxury-input-label">Greeting Card Message</label>
+                  <input type="text" class="luxury-input" id="card-message" placeholder="Happy Birthday to the best sister! Love...">
+                </div>
+                
+                <!-- Price Calculator -->
+                <div class="calculator-box">
+                  <div class="calc-row">
+                    <span>Base Packing Rate:</span>
+                    <strong>&#8377;200</strong>
+                  </div>
+                  <div class="calc-row">
+                    <span>Selected Items Subtotal:</span>
+                    <strong id="calc-subtotal">&#8377;0</strong>
+                  </div>
+                  <div class="calc-divider"></div>
+                  <div class="calc-row row-deposit">
+                    <span>Estimated Total:</span>
+                    <span class="deposit-amt" id="calc-total">&#8377;200</span>
+                  </div>
+                  <p class="calc-disclaimer">* Estimated prices are subject to slight variance depending on special customization choices. Redirection will open WhatsApp details with Sonu.</p>
+                </div>
+                
+                <!-- Payment Method Selector for Razorpay compliance -->
+                <div style="margin-top: 2rem; border-top: 1px solid rgba(210, 97, 119, 0.15); padding-top: 2rem;">
+                  <label class="luxury-input-label" style="margin-bottom: 1rem; display: block;">Booking & Payment Mode</label>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <!-- Pre-pay -->
+                    <label class="builder-item-label builder-checked" id="lbl-pay-prebook" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; height: auto; padding: 1.25rem;">
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <input type="radio" name="payment-method" id="pay-prebook" checked style="accent-color: var(--color-secondary); width: 18px; height: 18px; cursor: pointer;">
+                        <strong style="color: var(--color-dark); font-size: 0.95rem;">Pre-pay via Razorpay</strong>
+                      </div>
+                      <span style="font-size: 0.78rem; color: var(--color-dark-muted); margin-left: 2rem; line-height: 1.4;">Pay online securely. Confirms order and locks your delivery date instantly.</span>
+                    </label>
+                    
+                    <!-- Chat first -->
+                    <label class="builder-item-label" id="lbl-pay-whatsapp" style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; height: auto; padding: 1.25rem;">
+                      <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <input type="radio" name="payment-method" id="pay-whatsapp" style="accent-color: var(--color-secondary); width: 18px; height: 18px; cursor: pointer;">
+                        <strong style="color: var(--color-dark); font-size: 0.95rem;">Enquire via WhatsApp</strong>
+                      </div>
+                      <span style="font-size: 0.78rem; color: var(--color-dark-muted); margin-left: 2rem; line-height: 1.4;">Send selections to Sonu first, discuss customizations, pay manually later.</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            
+            <!-- Submit Row -->
+            <div class="form-submit-row">
+              <div class="security-tag">
+                <i data-lucide="shield-check" class="icon-green" style="color: var(--color-accent);"></i>
+                <span>Secure SSL Checkout</span>
+              </div>
+              <button type="submit" class="btn btn-primary pulse-gold-btn" id="booking-submit-btn">
+                Proceed to Booking <i data-lucide="arrow-right" size="16"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER SECTION -->
+  <footer class="footer-section">
+    <div class="container footer-content-grid">
+      <!-- Col 1 -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="assets/logo.svg" alt="Divine's Eternity Logo" class="footer-logo-img">
+          <h3>Divine's Eternity</h3>
+        </div>
+        <p class="footer-about-text">Turning fleeting moments into lasting memories with luxury handcrafted gift hampers, satin ribbon bouquets, jewelry, and scrunchies in Bangalore, Karnataka.</p>
+        <div class="footer-social-links">
+          <a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/919353652043" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="WhatsApp">
+            <i data-lucide="message-square"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Col 2 -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Get in Touch</h4>
+        <ul class="footer-contact-list">
+          <li class="contact-list-item">
+            <i data-lucide="map-pin"></i>
+            <div>
+              <strong>Location:</strong>
+              <p>Bangalore, Karnataka, India</p>
+            </div>
+          </li>
+          <li class="contact-list-item">
+            <i data-lucide="phone"></i>
+            <div>
+              <strong>WhatsApp / Contact:</strong>
+              <p><a href="tel:+919353652043">+91 9353652043</a></p>
+            </div>
+          </li>
+          <li class="contact-list-item">
+            <i data-lucide="instagram"></i>
+            <div>
+              <strong>Instagram:</strong>
+              <p><a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer">@divines_eternity2025</a></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Col 3 -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Our Studio Location</h4>
+        <div class="maps-wrapper glass-panel">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.925527376722!2d77.5945627!3d12.9715987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c0b4131b%3A0xedf2723e3d2b0d4!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1780592132663!5m2!1sen!2sin" 
+            width="100%" 
+            height="150" 
+            style="border: 0; border-radius: 8px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            title="Divine's Eternity Bangalore Studio"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container footer-credits-bar">
+      <p>&copy; 2026 Divine's Eternity. All rights reserved. | <a href="policies.html" style="text-decoration: underline;">Policies</a></p>
+      <p>Designed & Developed by <a href="https://github.com/devxnex" target="_blank" style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">devxnex</a></p>
+    </div>
+  </footer>
+
+  <!-- FLOATING DESKTOP WHATSAPP WIDGET -->
+  <a href="https://wa.me/919353652043?text=Hello%20Divine's%20Eternity,%20I'm%20visiting%20your%20website%20and%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="desktop-whatsapp-widget">
+    <i data-lucide="message-square"></i> Chat with Us
+  </a>
+
+  <!-- MOBILE DOCK BAR -->
+  <div class="mobile-dock-wrapper glass-panel">
+    <a href="tel:+919353652043" class="dock-item" aria-label="Call Owner">
+      <div class="dock-icon-circle bg-call"><i data-lucide="phone" size="20"></i></div>
+      <span class="dock-label">Call</span>
+    </a>
+    <a href="https://instagram.com/divines_eternity2025" target="_blank" rel="noopener noreferrer" class="dock-item" aria-label="Instagram Page">
+      <div class="dock-icon-circle bg-email" style="background-color: #e1306c;"><i data-lucide="instagram" size="20"></i></div>
+      <span class="dock-label">Instagram</span>
+    </a>
+    <a href="https://wa.me/919353652043?text=Hello%20Divine's%20Eternity,%20I%20would%20like%20to%20enquire%20about%20your%20custom%20gift%20hampers." target="_blank" rel="noopener noreferrer" class="dock-item" aria-label="Chat on WhatsApp">
+      <div class="dock-icon-circle bg-whatsapp"><i data-lucide="message-square" size="20"></i></div>
+      <span class="dock-label">WhatsApp</span>
+    </a>
+    <a href="booking.html" class="dock-item active" aria-label="Customize Order">
+      <div class="dock-icon-circle bg-map" style="background-color: var(--color-accent);"><i data-lucide="sparkles" size="20"></i></div>
+      <span class="dock-label">Custom</span>
+    </a>
+  </div>
+
+  <!-- Razorpay Checkout & Confetti CDN -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- JS Code Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
